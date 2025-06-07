@@ -1,0 +1,140 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Hey Jarvis", "Hello Jarvis", "Hi Jarvis",
+        "Good morning", "Good evening", "Good afternoon", "Good night",
+        "Greetings", "What's up", "How are you", "Howdy"
+      ],
+      "responses": ["Hello!", "Hi there!", "Jarvis at your service.", "Hello! How can I help you?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye", "Goodbye", "See you later", "Quit", "Exit", "Shutdown",
+        "Turn off", "Stop", "End", "Farewell", "Catch you later", "Talk to you later"
+      ],
+      "responses": ["Goodbye!", "Shutting down.", "Catch you later.", "See you soon!"]
+    },
+    {
+      "tag": "app_control",
+      "patterns": [
+        "Open Chrome", "Start Chrome", "Launch Chrome", "Open browser", "Start browser",
+        "Open WhatsApp", "Start WhatsApp", "Launch WhatsApp", "Open chat app",
+        "Open Spotify", "Start Spotify", "Launch Spotify", "Open music app",
+        "Open Notepad", "Start Notepad", "Launch Notepad", "Open text editor",
+        "Open Calculator", "Start Calculator", "Launch Calculator", "Open calc",
+        "Open Visual Studio Code", "Start VS Code", "Launch VS Code", "Open code editor",
+        "Open Games", "Start Games", "Launch Games", "Open game",
+        "Launch application", "Start application", "Open app", "Run program",
+        "Open the browser", "Start the music app", "Launch the calculator"
+      ],
+      "responses": ["Opening the requested application.", "Starting the app now.", "Launching the program."]
+    },
+    {
+      "tag": "close_app",
+      "patterns": [
+        "Close Chrome", "Exit Chrome", "Stop Chrome", "Close browser", "Exit browser",
+        "Close WhatsApp", "Exit WhatsApp", "Stop WhatsApp", "Close chat app",
+        "Close Spotify", "Exit Spotify", "Stop Spotify", "Close music app",
+        "Close Notepad", "Exit Notepad", "Stop Notepad", "Close text editor",
+        "Close Calculator", "Exit Calculator", "Stop Calculator", "Close calc",
+        "Close Visual Studio Code", "Exit VS Code", "Stop VS Code", "Close code editor",
+        "Close Games", "Exit Games", "Stop Games", "Close game",
+        "Close application", "Exit app", "Stop program", "Terminate app",
+        "Shut down the app", "Kill the process", "End the program"
+      ],
+      "responses": ["Closing the application.", "Stopping the app now.", "Exiting the program."]
+    },
+    {
+      "tag": "play_spotify",
+      "patterns": [
+        "Play music", "Start music", "Play songs", "Start playing",
+        "Play Spotify", "Start Spotify music", "Resume music", "Continue music",
+        "Play my playlist", "Play my songs", "Start my music", "Play tracks",
+        "Turn on music", "Start the music", "Play some music", "Put on music",
+        "I want to listen to music", "Can you play music", "Start playing songs",
+        "Play something", "Play anything", "Music on", "Start audio"
+      ],
+      "responses": ["Playing music on Spotify.", "Starting your music now.", "Music is now playing."]
+    },
+    {
+      "tag": "pause_spotify",
+      "patterns": [
+        "Pause music", "Stop music", "Pause the music", "Stop the music",
+        "Pause Spotify", "Stop Spotify", "Pause song", "Stop song",
+        "Pause playback", "Stop playback", "Hold the music", "Freeze the music",
+        "Music off", "Turn off music", "Silence", "Mute music",
+        "Stop playing", "Pause what's playing", "Hold on", "Wait"
+      ],
+      "responses": ["Pausing music on Spotify.", "Music paused.", "Stopping playback now."]
+    },
+    {
+      "tag": "next_song",
+      "patterns": [
+        "Next song", "Skip song", "Skip track", "Next track", "Go to next song",
+        "Skip this song", "Skip this track", "Play next song", "Move to next",
+        "Forward", "Next", "Skip ahead", "Change song", "Different song",
+        "I don't like this song", "Skip it", "Next one", "Move forward"
+      ],
+      "responses": ["Skipping to next song.", "Playing the next track.", "Moving to next song."]
+    },
+    {
+      "tag": "previous_song",
+      "patterns": [
+        "Previous song", "Last song", "Go back", "Play the last song", "Go back a track",
+        "Previous track", "Back track", "Rewind", "Go backwards", "Play previous",
+        "Last track", "Replay last song", "Go to previous", "Back one song",
+        "Return to previous", "Play the song before", "Backward", "Undo skip"
+      ],
+      "responses": ["Playing the previous song.", "Going back to last track.", "Playing previous song."]
+    },
+    {
+      "tag": "get_weather",
+      "patterns": [
+        "What's the weather", "Tell me the weather", "Weather report", "How's the weather",
+        "Is it raining", "Is it sunny", "Will it rain today", "Weather forecast",
+        "What's it like outside", "Temperature outside", "How hot is it", "How cold is it",
+        "Weather today", "Today's weather", "Current weather", "Weather conditions",
+        "Is it going to rain", "Do I need an umbrella", "Should I wear a jacket",
+        "Weather in Delhi", "Weather in Mumbai", "Weather in my city"
+      ],
+      "responses": ["Fetching weather details.", "Getting weather information.", "Checking weather conditions."]
+    },
+    {
+      "tag": "set_timer",
+      "patterns": [
+        "Set a timer", "Start a timer", "Set timer for 5 minutes", "Timer for 10 minutes",
+        "Set a countdown", "Start countdown", "Remind me in 5 minutes", "Alert me in 10 minutes",
+        "Set alarm for 5 minutes", "Wake me up in 30 minutes", "Notification in 1 hour",
+        "Timer", "Countdown", "Set a reminder", "Schedule a reminder",
+        "Let me know when 5 minutes are up", "Tell me when time is up",
+        "Set timer for cooking", "Timer for exercise", "Study timer"
+      ],
+      "responses": ["Setting a timer.", "Timer started.", "Countdown begun."]
+    },
+    {
+      "tag": "create_calendar_event",
+      "patterns": [
+        "Schedule a meeting", "Create a calendar event", "Add event to my calendar", "Schedule an appointment",
+        "Book a meeting", "Add to calendar", "Create an event", "Schedule something",
+        "Meeting tomorrow", "Appointment next week", "Event on Friday", "Schedule for Monday",
+        "Add meeting to calendar", "Create calendar entry", "Schedule reminder",
+        "Block my calendar", "Reserve time", "Book time slot", "Calendar appointment"
+      ],
+      "responses": ["Adding event to your calendar.", "Creating calendar event.", "Scheduling your appointment."]
+    },
+    {
+      "tag": "send_whatsapp",
+      "patterns": [
+        "Send a WhatsApp message", "Text on WhatsApp", "Message on WhatsApp", "WhatsApp message",
+        "Send message to mom", "Text mom on WhatsApp", "Message John on WhatsApp", "WhatsApp John",
+        "Send WhatsApp", "Text someone", "Message someone", "Send text message",
+        "Open WhatsApp to message", "WhatsApp chat", "Send a text", "Message via WhatsApp",
+        "Text message", "Send SMS via WhatsApp", "Chat on WhatsApp", "WhatsApp someone"
+      ],
+      "responses": ["Opening WhatsApp to send the message.", "Preparing WhatsApp message.", "Opening chat application."]
+    }
+  ]
+}
