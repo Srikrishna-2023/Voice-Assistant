@@ -304,7 +304,7 @@ def listen():
     try:
         with sr.Microphone() as source:
             print("Listening...")
-            audio = recognizer.listen(source, timeout=10, phrase_time_limit=8)
+            audio = recognizer.listen(source, timeout=30, phrase_time_limit=8)
             try:
                 command = recognizer.recognize_google(audio)
                 print(f"You said: {command}")
@@ -429,6 +429,29 @@ def set_alarm(command):
     else:
         speak("I couldn't understand the alarm time.")
 
+# ─── Ollama LLM Fallback ──────────────────────────────────────────────────────
+
+OLLAMA_URL   = "http://localhost:11434/api/generate"
+OLLAMA_MODEL = "phi3:mini"   # Change to whatever model you have pulled
+
+def ollama_respond(prompt: str) -> str:
+    """Send prompt to local Ollama. Returns a fallback string on failure."""
+    try:
+        response = requests.post(OLLAMA_URL, json={
+            "model": OLLAMA_MODEL,
+            "prompt": prompt,
+            "stream": False,
+            "options": {"num_predict": 200, "temperature": 0.7}
+        }, timeout=10)
+        if response.status_code == 200:
+            reply = response.json().get("response", "").strip()
+            if reply:
+                print(f"[Ollama] Response received.")
+                return reply
+    except Exception as e:
+        print(f"[Ollama] Error: {e}")
+    return "I couldn't reach my thinking module. Is Ollama running?"
+
 # ─── Fallback ─────────────────────────────────────────────────────────────────
 
 _FALLBACK_RESPONSES = [
@@ -441,10 +464,14 @@ _fallback_idx = 0
 
 def simple_fallback(user_message):
     global _fallback_idx
-    print(f"[Fallback] No intent matched for: '{user_message}'")
-    response = _FALLBACK_RESPONSES[_fallback_idx % len(_FALLBACK_RESPONSES)]
-    _fallback_idx += 1
-    return response
+    print(f"[Fallback] No intent matched for: '{user_message}' — trying Ollama")
+    reply = ollama_respond(user_message)
+    # If Ollama is unavailable, cycle through canned responses
+    if "couldn't reach" in reply:
+        response = _FALLBACK_RESPONSES[_fallback_idx % len(_FALLBACK_RESPONSES)]
+        _fallback_idx += 1
+        return response
+    return reply
 
 # ─── Rule-Based Intent Detection ──────────────────────────────────────────────
 
@@ -559,7 +586,7 @@ def enhanced_assistant(wake_word="jarvis", access_key=PICOVOICE_ACCESS_KEY):
             MIN_CONFIDENCE = 0.20
 
             if confidence < MIN_CONFIDENCE:
-                print(f"[Low confidence ({confidence:.2f})] Using fallback")
+                print(f"[Low confidence ({confidence:.2f})] Routing to Ollama")
                 response = simple_fallback(command)
                 speak(response)
                 continue
@@ -663,7 +690,7 @@ def enhanced_assistant(wake_word="jarvis", access_key=PICOVOICE_ACCESS_KEY):
                     speak("WhatsApp is now open. You can send your message.")
 
                 else:
-                    print(f"[Fallback] Unknown intent '{intent}'")
+                    print(f"[Ollama] Unknown intent '{intent}' — routing to LLM")
                     response = simple_fallback(command)
                     speak(response)
 
